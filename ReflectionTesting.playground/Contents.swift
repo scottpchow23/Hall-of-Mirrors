@@ -17,4 +17,28 @@ project.platform = "Xcode 8.3"
 project.version = 0.1
 project.info = "This is an example of reflection being used in Swift."
 
-print(project.title)
+print(project)
+
+let projectMirror = Mirror(reflecting: project)
+var properties = projectMirror.children
+
+//This makes it all look like KVO
+for property in properties {
+    print(property)
+}
+print("\n")
+
+projectMirror.children.contains { (value:(label: String?, value: Any)) -> Bool in
+    if(value.label == "title") {
+        return false
+    } else {
+        return true
+    }
+}
+properties = projectMirror.children
+
+for property in properties {
+    print(property)
+}
+
+// Conclusion: I require an instance of the class in order to evaluate what the object's class is.
