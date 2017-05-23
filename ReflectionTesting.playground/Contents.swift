@@ -8,6 +8,11 @@ class Project {
     var platform: String = ""
     var version: Double = 0.0
     var info: String?
+    
+    func doNothing(string: String) -> Void {
+        print(string)
+        return
+    }
 }
 
 let project = Project()
@@ -42,3 +47,21 @@ for property in properties {
 }
 
 // Conclusion: I require an instance of the class in order to evaluate what the object's class is.
+
+
+class Dummy {
+    
+}
+
+let dummy = Dummy()
+let dummyMirror = Mirror(reflecting: dummy)
+properties = dummyMirror.children
+for property in properties {
+    print("boo")
+    print(property)
+}
+print("booo\n")
+
+
+
+
